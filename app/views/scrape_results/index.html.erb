@@ -1,0 +1,47 @@
+<%= form_for(@scrape_result, :html => {:class => "form-inline"}) do |f| %>
+  <% if @scrape_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scrape_result.errors.count, "error") %> prohibited this scrape_result from being saved:</h2>
+
+      <ul>
+      <% @scrape_result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.text_field :web_site, required: true, class: 'form-control',  placeholder: "example.com" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Scrape website", type: "submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+  <% if notice %>
+  <p class="alert alert-danger" role="alert"><%= notice %></p>
+  <% end %>
+  <%= will_paginate(@scrape_results, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'justify-content-center') %>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="row">WebSite</th>
+      <th scope="col">Scrape Results</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scrape_results.each do |scrape_result| %>
+      <tr>
+        <td scope="col"><pre><h6><%= link_to scrape_result.web_site, scrape_result %></h6></pre></td>
+        <td scope="row"><pre><%= JSON.pretty_generate(scrape_result.results)
+        %><pre></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+

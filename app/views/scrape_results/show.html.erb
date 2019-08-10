@@ -1,0 +1,9 @@
+<p class="alert alert-success" role="alert"><%= notice %></p>
+
+<%= link_to '<--Back', scrape_results_path, class: "btn btn-link" %>
+
+<h4><%= @scrape_result.web_site %></h4>
+
+<p>
+  <pre> <%= JSON.pretty_generate(@scrape_result.results)%></pre>
+</p>
