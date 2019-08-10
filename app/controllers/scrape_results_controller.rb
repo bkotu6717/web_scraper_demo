@@ -32,12 +32,17 @@ class ScrapeResultsController < ApplicationController
       rescue StandardError => e
         scraped_data = {error: e.message}
       end
-      @scrape_result = ScrapeResult.find_by(web_site: web_site)
-      if @scrape_result.present?
-         @scrape_result.update_attributes(results: scraped_data)
+      if scraped_data[:error].nil?
         @scrape_result = ScrapeResult.find_by(web_site: web_site)
+        if @scrape_result.present?
+           @scrape_result.update_attributes(results: scraped_data)
+          @scrape_result = ScrapeResult.find_by(web_site: web_site)
+        else
+          @scrape_result = ScrapeResult.new(web_site: web_site, results: scraped_data)
+        end
       else
-        @scrape_result = ScrapeResult.new(web_site: web_site, results: scraped_data)
+        @scrape_result = ScrapeResult.new
+        @scrape_result.errors.add(:base, scraped_data[:error])
       end
     else
       @scrape_result = ScrapeResult.new(web_site: web_site, results: scraped_data)
@@ -48,8 +53,8 @@ class ScrapeResultsController < ApplicationController
         format.html { redirect_to @scrape_result, notice: 'Website was successfully scraped.' }
         format.json { render :show, status: :created, location: @scrape_result }
       else
-        flash[:notice] = 'Invalid Website URL.'
-        format.html { redirect_to root_path notice: @scrape_result.errors}
+        flash[:notice] =  @scrape_result.errors[:base].first
+        format.html { redirect_to root_path }
         format.json { render json: @scrape_result.errors, status: :unprocessable_entity }
       end
     end

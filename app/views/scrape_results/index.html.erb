@@ -20,7 +20,8 @@
   </div>
 <% end %>
   <% if notice %>
-  <p class="alert alert-danger" role="alert"><%= notice %></p>
+  
+  <p class="alert alert-warning alert-dismissible fade show" role="alert"><%= notice %></p>
   <% end %>
   <%= will_paginate(@scrape_results, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'justify-content-center') %>
 
