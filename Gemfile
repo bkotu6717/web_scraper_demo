@@ -30,7 +30,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap-will_paginate'
-gem 'web_scraper', git: 'git@github.com:bkotu6717/web_scraper.git', branch: 'master'
+gem 'web_scraper', git: 'https://github.com/bkotu6717/web_scraper.git', branch: 'master'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

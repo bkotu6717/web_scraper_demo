@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:bkotu6717/web_scraper.git
+  remote: https://github.com/bkotu6717/web_scraper.git
   revision: f38a01bd3532fb7d1177a9a883756911b24ab5b4
   branch: master
   specs:
