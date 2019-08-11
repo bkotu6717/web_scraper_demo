@@ -28,7 +28,7 @@ class ScrapeResultsController < ApplicationController
     @scrape_result = nil
     if web_site.present?
       begin
-        scraped_data = WebScrape.new(web_site)
+        scraped_data = BrilliantWebScraper.new(web_site)
       rescue StandardError => e
         scraped_data = {error: e.message}
       end
