@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap-will_paginate'
 
-gem 'brilliant_web_scraper', '0.1'
+gem 'brilliant_web_scraper', '~> 0.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
